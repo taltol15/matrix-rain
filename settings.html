@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'" />
+  <title>Matrix Rain</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: radial-gradient(ellipse at top, #121a14 0%, #0b0f0c 60%);
+      color: #d8ffe0;
+      min-height: 100vh;
+      padding: 28px 28px 36px;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #00ff66;
+      text-shadow: 0 0 18px rgba(0, 255, 80, 0.35);
+    }
+    .subtitle {
+      margin: 0 0 22px;
+      color: #7aa884;
+      font-size: 13px;
+    }
+    .card {
+      background: rgba(10, 18, 12, 0.85);
+      border: 1px solid #1f3a28;
+      border-radius: 14px;
+      padding: 18px 18px 8px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+    }
+    .row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    label {
+      font-size: 13px;
+      color: #b7e0c0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label .val {
+      color: #00ff66;
+      font-variant-numeric: tabular-nums;
+      font-size: 12px;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: #00ff66;
+    }
+    input[type="color"] {
+      width: 100%;
+      height: 40px;
+      border: 1px solid #1f3a28;
+      border-radius: 8px;
+      background: #0d1510;
+      cursor: pointer;
+      padding: 2px;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      background: #0d1510;
+      color: #d8ffe0;
+      border: 1px solid #1f3a28;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 14px;
+      outline: none;
+    }
+    select:focus, input[type="text"]:focus {
+      border-color: #00ff66;
+      box-shadow: 0 0 0 2px rgba(0,255,102,0.15);
+    }
+    .check-row {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .check-row input { width: 18px; height: 18px; accent-color: #00ff66; }
+    #customWrap { display: none; }
+    .actions { margin-top: 8px; }
+    button#start {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #041208;
+      background: linear-gradient(180deg, #39ff7a 0%, #00d65c 100%);
+      box-shadow: 0 0 24px rgba(0, 255, 102, 0.35);
+      transition: transform 0.08s ease, filter 0.15s ease;
+    }
+    button#start:hover { filter: brightness(1.08); }
+    button#start:active { transform: scale(0.98); }
+    .hint {
+      margin-top: 14px;
+      text-align: center;
+      color: #5f7f68;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <h1>מטריקס גשם</h1>
+  <p class="subtitle">Matrix Rain — הגדר ולחץ התחל</p>
+  <div class="card">
+    <div class="row">
+      <label for="color">צבע (Color)</label>
+      <input type="color" id="color" value="#00ff00" />
+    </div>
+    <div class="row">
+      <label for="speed">מהירות (Speed) <span class="val" id="speedVal">50</span></label>
+      <input type="range" id="speed" min="1" max="100" value="50" />
+    </div>
+    <div class="row">
+      <label for="density">צפיפות (Density) <span class="val" id="densityVal">100</span></label>
+      <input type="range" id="density" min="10" max="200" value="100" />
+    </div>
+    <div class="row">
+      <label for="fontSize">גודל פונט (Font size) <span class="val" id="fontSizeVal">18</span></label>
+      <input type="range" id="fontSize" min="10" max="40" value="18" />
+    </div>
+    <div class="row">
+      <label for="charset">תווים (Characters)</label>
+      <select id="charset">
+        <option value="katakana">קטקנה (Katakana) — מקורי</option>
+        <option value="latin">לטיני (Latin)</option>
+        <option value="numbers">מספרים (Numbers)</option>
+        <option value="custom">מותאם אישית (Custom)</option>
+      </select>
+    </div>
+    <div class="row" id="customWrap">
+      <label for="customText">טקסט מותאם (Custom text)</label>
+      <input type="text" id="customText" value="TRUSTNO1" dir="ltr" />
+    </div>
+    <div class="row">
+      <label for="fade">דהייה / אורך שובל (Fade) <span class="val" id="fadeVal">50</span></label>
+      <input type="range" id="fade" min="5" max="95" value="50" />
+    </div>
+    <div class="row check-row">
+      <label for="fullscreen" style="margin:0;">מצב מסך מלא (Fullscreen)</label>
+      <input type="checkbox" id="fullscreen" checked />
+    </div>
+    <div class="actions">
+      <button id="start" type="button">התחל</button>
+    </div>
+  </div>
+  <p class="hint">Esc או כל מקש — יחזיר להגדרות</p>
+  <script src="settings.js"></script>
+</body>
+</html>

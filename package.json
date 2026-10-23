@@ -1,0 +1,51 @@
+{
+  "name": "matrix-rain",
+  "productName": "Matrix Rain",
+  "version": "1.0.0",
+  "description": "Matrix digital rain desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac dmg zip",
+    "dist:win": "electron-builder --win portable nsis",
+    "dist:linux": "electron-builder --linux AppImage"
+  },
+  "build": {
+    "appId": "io.matrixrain.app",
+    "productName": "Matrix Rain",
+    "files": [
+      "main.js",
+      "preload.js",
+      "settings.html",
+      "settings.js",
+      "matrix.html",
+      "matrix.js"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.entertainment"
+    },
+    "win": {
+      "target": [
+        "portable",
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Utility"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^24.13.3"
+  },
+  "allowScripts": {
+    "electron@31.7.7": true
+  }
+}
