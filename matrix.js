@@ -1,4 +1,4 @@
-// אפקט הגשם — canvas עם עמודות נופלות
+// The rain effect — a canvas with falling columns
 const canvas = document.getElementById('c');
 const ctx = canvas.getContext('2d');
 
@@ -47,7 +47,7 @@ function resize() {
 function rebuild() {
   chars = charsetFor(cfg);
   const fontSize = Math.max(8, Number(cfg.fontSize) || 18);
-  // צפיפות: כמה עמודות ביחס לרוחב — density 100 ≈ עמודה לכל fontSize פיקסלים
+  // density: how many columns relative to width — density 100 ~= one column per fontSize pixels
   const spacing = Math.max(8, fontSize * (200 / Math.max(10, Number(cfg.density) || 100)));
   const cols = Math.max(1, Math.floor(canvas.width / spacing));
   drops = Array.from({ length: cols }, () => ({
@@ -55,9 +55,9 @@ function rebuild() {
     y: Math.random() * -canvas.height / fontSize,
     speed: 0.6 + Math.random() * 1.4
   }));
-  // מיקום אופקי אחיד
+  // even horizontal placement
   for (let i = 0; i < drops.length; i++) drops[i].x = i * spacing + spacing * 0.2;
-  // מהירות: 1 איטי, 100 מהיר
+  // speed: 1 slow, 100 fast
   const s = Math.max(1, Math.min(100, Number(cfg.speed) || 50));
   frameGap = Math.max(8, 70 - s * 0.55);
   ctx.font = `${fontSize}px "Courier New", monospace`;
@@ -75,7 +75,7 @@ function draw(ts) {
 
   const fontSize = Math.max(8, Number(cfg.fontSize) || 18);
   const fade = Math.max(5, Math.min(95, Number(cfg.fade) || 50));
-  // fade גבוה = שובל ארוך יותר (אלפא נמוך יותר בכל פריים)
+  // higher fade = longer trail (lower alpha per frame)
   const alpha = 0.04 + (100 - fade) / 100 * 0.28;
   ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -86,10 +86,10 @@ function draw(ts) {
 
   for (const d of drops) {
     const ch = chars[Math.floor(Math.random() * chars.length)];
-    // מוביל בהיר
+    // bright leading character
     ctx.fillStyle = '#ffffff';
     ctx.fillText(ch, d.x, d.y * fontSize);
-    // שובל בצבע שנבחר
+    // trail in the chosen color
     ctx.fillStyle = `rgb(${r},${g},${b})`;
     const trail = chars[Math.floor(Math.random() * chars.length)];
     ctx.fillText(trail, d.x, (d.y - 1) * fontSize);
@@ -120,7 +120,7 @@ window.matrixAPI.onMatrixConfig((c) => {
   }
 });
 
-// אם ההגדרות כבר נשלחו לפני שהאזנו — נטען מהשרת
+// if the config was already sent before we started listening — load it from the main process
 window.matrixAPI.getConfig().then((c) => {
   applyConfig(c);
   if (!animId) {

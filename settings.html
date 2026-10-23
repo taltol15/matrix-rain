@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'" />
@@ -112,51 +112,51 @@
   </style>
 </head>
 <body>
-  <h1>מטריקס גשם</h1>
-  <p class="subtitle">Matrix Rain — הגדר ולחץ התחל</p>
+  <h1>Matrix Rain</h1>
+  <p class="subtitle">Configure it and hit Start</p>
   <div class="card">
     <div class="row">
-      <label for="color">צבע (Color)</label>
+      <label for="color">Color</label>
       <input type="color" id="color" value="#00ff00" />
     </div>
     <div class="row">
-      <label for="speed">מהירות (Speed) <span class="val" id="speedVal">50</span></label>
+      <label for="speed">Speed <span class="val" id="speedVal">50</span></label>
       <input type="range" id="speed" min="1" max="100" value="50" />
     </div>
     <div class="row">
-      <label for="density">צפיפות (Density) <span class="val" id="densityVal">100</span></label>
+      <label for="density">Density <span class="val" id="densityVal">100</span></label>
       <input type="range" id="density" min="10" max="200" value="100" />
     </div>
     <div class="row">
-      <label for="fontSize">גודל פונט (Font size) <span class="val" id="fontSizeVal">18</span></label>
+      <label for="fontSize">Font size <span class="val" id="fontSizeVal">18</span></label>
       <input type="range" id="fontSize" min="10" max="40" value="18" />
     </div>
     <div class="row">
-      <label for="charset">תווים (Characters)</label>
+      <label for="charset">Characters</label>
       <select id="charset">
-        <option value="katakana">קטקנה (Katakana) — מקורי</option>
-        <option value="latin">לטיני (Latin)</option>
-        <option value="numbers">מספרים (Numbers)</option>
-        <option value="custom">מותאם אישית (Custom)</option>
+        <option value="katakana">Katakana (original)</option>
+        <option value="latin">Latin</option>
+        <option value="numbers">Numbers</option>
+        <option value="custom">Custom</option>
       </select>
     </div>
     <div class="row" id="customWrap">
-      <label for="customText">טקסט מותאם (Custom text)</label>
+      <label for="customText">Custom text</label>
       <input type="text" id="customText" value="TRUSTNO1" dir="ltr" />
     </div>
     <div class="row">
-      <label for="fade">דהייה / אורך שובל (Fade) <span class="val" id="fadeVal">50</span></label>
+      <label for="fade">Fade / trail length <span class="val" id="fadeVal">50</span></label>
       <input type="range" id="fade" min="5" max="95" value="50" />
     </div>
     <div class="row check-row">
-      <label for="fullscreen" style="margin:0;">מצב מסך מלא (Fullscreen)</label>
+      <label for="fullscreen" style="margin:0;">Fullscreen</label>
       <input type="checkbox" id="fullscreen" checked />
     </div>
     <div class="actions">
-      <button id="start" type="button">התחל</button>
+      <button id="start" type="button">Start</button>
     </div>
   </div>
-  <p class="hint">Esc או כל מקש — יחזיר להגדרות</p>
+  <p class="hint">Esc or any key returns to settings</p>
   <script src="settings.js"></script>
 </body>
 </html>

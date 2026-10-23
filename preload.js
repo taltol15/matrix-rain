@@ -1,4 +1,4 @@
-// גשר מאובטח בין הרנדרר לתהליך הראשי
+// Secure bridge between the renderer and the main process
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('matrixAPI', {

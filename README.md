@@ -1,23 +1,23 @@
-# מטריקס גשם — Matrix Rain
+# Matrix Rain
 
-אפליקציית דסקטופ פשוטה (Electron) עם אפקט הגשם הירוק של מטריקס.
-עובדת על **מק / ווינדוס / לינוקס**.
+A simple Electron desktop app with the classic Matrix digital rain effect.
+Works on **macOS / Windows / Linux**.
 
-## הרצה מהירה
+## Quick start
 
 ```bash
-cd matrix-app
+cd matrix-rain
 npm install
 npm start
 ```
 
-ייפתח חלון הגדרות בעברית. בחר צבע / מהירות / צפיפות וכו׳ ולחץ **התחל**.
-`Esc` או כל מקש / לחיצה — חוזר להגדרות.
-ההגדרות נשמרות אוטומטית בין הפעלות.
+A settings window opens. Pick color, speed, density and more, then hit **Start**.
+`Esc`, any key, or a click returns to settings.
+Your settings are saved automatically between launches.
 
-## אריזה (אופציונלי)
+## Packaging (optional)
 
-לאחר `npm install`:
+After `npm install`:
 
 ```bash
 npm run dist:mac     # dmg + zip
@@ -25,13 +25,13 @@ npm run dist:win     # portable + nsis
 npm run dist:linux   # AppImage
 ```
 
-הקבצים יופיעו תחת `dist/`. מומלץ לארוז על אותו מערכת הפעלה של היעד.
+Artifacts land under `dist/`. Package on the same OS as your target platform.
 
-## קבצים
+## Files
 
-- `main.js` — תהליך ראשי, IPC ושמירת הגדרות
-- `preload.js` — גשר מאובטח לרנדרר
-- `settings.html` / `settings.js` — ממשק ההגדרות
-- `matrix.html` / `matrix.js` — אפקט ה-canvas
+- `main.js` — main process, IPC and config persistence
+- `preload.js` — secure bridge into the renderer
+- `settings.html` / `settings.js` — settings UI
+- `matrix.html` / `matrix.js` — canvas rain effect
 
-נהנה 🟢
+Enjoy 🟢

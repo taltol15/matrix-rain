@@ -1,4 +1,4 @@
-// תהליך ראשי: חלונות, שמירת הגדרות ו-IPC
+// Main process: windows, config persistence and IPC
 const { app, BrowserWindow, ipcMain, screen } = require('electron');
 const path = require('path');
 const fs = require('fs');

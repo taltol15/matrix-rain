@@ -1,4 +1,4 @@
-// ממשק ההגדרות — טוען, שומר ומפעיל את האפקט
+// Settings UI — loads, saves and launches the effect
 const $ = (id) => document.getElementById(id);
 
 const fields = ['color', 'speed', 'density', 'fontSize', 'charset', 'customText', 'fade', 'fullscreen'];
@@ -51,7 +51,7 @@ $('start').addEventListener('click', async () => {
   await window.matrixAPI.startMatrix(cfg);
 });
 
-// שמירה שקטה כשסוגרים / משנים
+// Save quietly on close / change
 window.addEventListener('beforeunload', () => {
   window.matrixAPI.saveConfig(readForm());
 });
